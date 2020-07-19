@@ -8,6 +8,7 @@
 </div>
 <div class="row justify-content-center mt-5">
     <div class="col-md-10">
+        {% if todos %}
         <div class="list-group">
             {% for todo in todos %}
             <a href="{% url 'viewTodo' todo.id %}"
@@ -15,6 +16,13 @@
                 - Completed {{ todo.datecompleted|date:'M j Y H:i' }}</a>
             {% endfor %}
         </div>
+        {% else %}
+        <div class="text-center">
+            <h2>Looks like you don't have any completed todos!</h2>
+            <br>
+            <a role="button" class="btn btn-primary" href="{% url 'createTodo' %}">New Todo</a>
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
